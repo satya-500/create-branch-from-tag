@@ -17,10 +17,10 @@ This action creates a new branch from a specific tag.
 
 ```
 - name: creating rc branch
-	uses: satya-500/create-branch@v1.0
-	env:
-	  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-	with:
-	  branch: release
-	  from_tag: ${{ github.event.inputs.version }}
+  uses: satya-500/create-branch@v1.0
+  env:
+   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+   branch: release
+   from_tag: ${{ github.event.inputs.version }}
 ```
