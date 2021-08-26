@@ -8,8 +8,8 @@ inputs:
   branch:
     description: 'The branch to create'
     default: 'release'
-  from_tag:
-    description: 'Provide the tag numver ex:- v0.0.7'
+  from:
+    description: 'Provide the tag number ex:- v0.0.7 or branch name i.e develop'
     required: true
 runs:
   using: 'node12'

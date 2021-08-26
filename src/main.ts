@@ -5,9 +5,9 @@ import { createBranch } from './create-branch';
 async function run() {
   try {
     const branch = core.getInput('branch');
-    const from_tag = core.getInput('from_tag');
+    const from = core.getInput('from');
     core.debug(`Creating branch ${branch}`);
-    await createBranch(GitHub, context, branch, from_tag)
+    await createBranch(GitHub, context, branch, from)
   } catch (error) {
     core.setFailed(error.message);
   }

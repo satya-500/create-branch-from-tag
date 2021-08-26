@@ -2977,9 +2977,9 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const branch = core.getInput('branch');
-            const from_tag = core.getInput('from_tag');
+            const from = core.getInput('from');
             core.debug(`Creating branch ${branch}`);
-            yield create_branch_1.createBranch(github_1.GitHub, github_1.context, branch, from_tag);
+            yield create_branch_1.createBranch(github_1.GitHub, github_1.context, branch, from);
         }
         catch (error) {
             core.setFailed(error.message);
@@ -8381,7 +8381,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const childProcess = __webpack_require__(129);
-function createBranch(github, context, branch, from_tag) {
+function createBranch(github, context, branch, from) {
     return __awaiter(this, void 0, void 0, function* () {
         const toolkit = new github(githubToken());
         let branchExists;
@@ -8394,7 +8394,7 @@ function createBranch(github, context, branch, from_tag) {
         }
         catch (error) {
             if (error.name === 'HttpError' && error.status === 404) {
-                const longSHA = childProcess.execSync('git rev-list -n 1 tags/' + from_tag).toString().trim();
+                const longSHA = childProcess.execSync('git rev-list -n 1 ' + from).toString().trim();
                 yield toolkit.git.createRef(Object.assign({ ref: `refs/heads/${branch}`, sha: longSHA }, context.repo));
             }
             else {

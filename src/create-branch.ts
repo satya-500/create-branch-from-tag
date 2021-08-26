@@ -3,7 +3,7 @@ import { GitHub } from "@actions/github";
 
 const childProcess = require('child_process');
 
-export async function createBranch(github: any, context: Context, branch: string, from_tag: string) {
+export async function createBranch(github: any, context: Context, branch: string, from: string) {
   const toolkit : GitHub = new github(githubToken());
     let branchExists;
     // Sometimes branch might come in with refs/heads already
@@ -19,7 +19,7 @@ export async function createBranch(github: any, context: Context, branch: string
       branchExists = true;
     } catch(error) {
       if(error.name === 'HttpError' && error.status === 404) {
-        const longSHA = childProcess.execSync('git rev-list -n 1 tags/'+from_tag).toString().trim();
+        const longSHA = childProcess.execSync('git rev-list -n 1 '+from).toString().trim();
         await toolkit.git.createRef({
           ref: `refs/heads/${branch}`,
           sha: longSHA,
