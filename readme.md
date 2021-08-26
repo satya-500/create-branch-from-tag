@@ -9,12 +9,18 @@ This action creates a new branch from a specific tag.
 
 **Optional** The name of the branch to create. Default `"release-candidate"`.
 
-### `from_tag`
+### `from`
 
-**Required** The name of the tag from which new branch will be created.
+**Required** 
+The name of the tag/branch from which new branch will be created.
+
+tag should be prefix with tags/your-tag.
+
+branch you can provide directly.
 
 ## Example usage
 
+create branch from tag
 ```
 - name: creating rc branch
   uses: satya-500/create-branch@v1.0
@@ -22,5 +28,16 @@ This action creates a new branch from a specific tag.
    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
    branch: release
-   from_tag: ${{ github.event.inputs.version }}
+   tag: tags/v0.0.7
+```
+
+create branch from specific ref (branch)
+```
+- name: creating rc branch
+  uses: satya-500/create-branch@v1.0
+  env:
+   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+   branch: release
+   tag: test
 ```
