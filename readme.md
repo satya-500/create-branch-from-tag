@@ -12,7 +12,7 @@ This action creates a new branch from a specific tag.
 ### `from`
 
 **Required** 
-The name of the tag/branch from which new branch will be created.
+The name of the tag from which new branch will be created.
 
 tag should be prefix with tags/your-tag.
 
